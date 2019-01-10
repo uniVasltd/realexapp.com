@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+<title>Login</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link href="twitter-bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="js/font-awesome/css/font-awesome.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="js/jquery.blockui.js"></script>
+<script src="js/sha512.js"></script>
+<script src="twitter-bootstrap/js/bootstrap.js"></script>
+<script src="js/jquery.md5.js"></script>
+
+<style>
+
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  
+     background-size:   cover;                      /* <------ */
+    background-repeat: repeat;
+    background-position: center center; 
+}
+
+
+ .form-signin {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+}
+
+.form-signin .form-control {
+	position: relative;
+	height: auto;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	 padding: 10px; 
+	font-size: 16px;
+}
+
+input{
+   text-align:center;
+}
+
+ .bigicon {
+        font-size: 97px;
+        color: #f96145;
+       
+    }
+
+ #over img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 50%;
+}
+
+/*   .maindiv{
+background-color:white;
+}  */ 
+
+/*   html, body {
+ background: url("imgs/loginbg.jpg");
+ background-size: 100%;
+ 
+ } */  
+
+/*  .bgnew {
+ background-size: 100%;
+ opacity: 0.5;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+  z-index: -1;
+ }  */
+ 
+/*  .circle {
+  position: absolute;
+  z-index: 101;
+  height: 96px;
+  width: 96px;
+  border-radius: 50%;
+  opacity: 0.99;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-position: center center;
+} */
+ 
+/*  body {
+    background-image: url("imgs/bgimg.png");
+    background-repeat: repeat-y repeat-x;
+} */
+ 
+/*  .input-group-addon {
+    color: #fff;
+    background: #3276B1;
+} */
+ 
+ .form-signin .checkbox
+{
+    font-weight: normal;
+}
+ 
+#bodyContent{
+ 
+
+} 
+ 
+</style>
+
+</head>
+<body>
+<!-- <div style="min-height: 10px"></div> -->
+
+<div style="min-height:120px;"></div>
+
+<div class="row" id="bodyContent">
+<div class="col-md-4">	</div>
+	<div class="container well well-sm col-md-4 maindiv" align="left" style="max-width:370px;margin-right:30px;color:black;background-color:white;">
+	
+	<!-- <h1 style="font-size: 300%;letter-spacing: 6px;"><center class="text1">Control </center><br/><center class="text1">Vulnerability </center><br/><center class="text1"> Management </center><br/><center class="text1"> System</center></h1> -->
+	
+		<form id="LoginForm" class="form-signin" role="form">
+			<h2 class="form-signin-heading" align="center" style="margin-top:0px;">Please Sign In</h2>
+			<div id="over" class="form-group" style="height:96px;" align="center" >
+			<img class="circle" src="imgs/user.png" align="middle"/>
+			</div> 
+			<!-- <span class="fa fa-user bigicon"></span> -->
+			
+			
+			<div  class="form-group">
+			<div class="input-group">
+			<input type="text" name="txtuser" id="userName" class="form-control"  placeholder="User Id"  required autofocus autocomplete="off">
+			<!-- <label for="username" class="input-group-addon glyphicon glyphicon-user"></label> -->
+			<span class="input-group-addon">
+			<i class="glyphicon glyphicon-user"></i>
+			</span>
+			</div>
+			</div>
+			<div  class="form-group"> 
+			<div class="input-group">
+			<input type="password" name="txtpasswd" id="password" class="form-control" placeholder="Password" required autofocus autocomplete="off">
+			<span class="input-group-addon">
+			<i class="glyphicon glyphicon-lock"></i>
+			</span>
+			</div>
+			</div>
+			<div  class="form-group"> 
+			<input type="submit" class="btn btn-primary btn-block custom" value="Sign In">
+			</div> 
+	    	</form>
+            </div>
+	<div class="col-md-4"></div>
+	</div>
+
+</body>
+
+
+<script type="text/javascript">
+
+(function (exports) {
+    function valOrFunction(val, ctx, args) {
+        if (typeof val == "function") {
+            return val.apply(ctx, args);
+        } else {
+            return val;
+        }
+    }
+
+    function InvalidInputHelper(input, options) {
+        input.setCustomValidity(valOrFunction(options.defaultText, window, [input]));
+
+        function changeOrInput() {
+            if (input.value == "") {
+                input.setCustomValidity(valOrFunction(options.emptyText, window, [input]));
+            } else {
+                input.setCustomValidity("");
+            }
+        }
+
+        function invalid() {
+            if (input.value == "") {
+                input.setCustomValidity(valOrFunction(options.emptyText, window, [input]));
+            } else {
+               input.setCustomValidity(valOrFunction(options.invalidText, window, [input]));
+            }
+        }
+
+        input.addEventListener("change", changeOrInput);
+        input.addEventListener("input", changeOrInput);
+        input.addEventListener("invalid", invalid);
+    }
+    exports.InvalidInputHelper = InvalidInputHelper;
+})(window);
+
+
+
+InvalidInputHelper(document.getElementById("userName"), {
+    defaultText: "Please enter User Id",
+    emptyText: "Please enter User Id",
+    invalidText: function (input) {
+        return 'The email address "' + input.value + '" is invalid!';
+    }
+});
+
+InvalidInputHelper(document.getElementById("password"), {
+    defaultText: "Please enter password",
+    emptyText: "Please enter password",
+    invalidText: function (input) {
+        return 'The password "' + input.value + '" is invalid!';
+    }
+});
+
+
+$('#LoginForm').on('submit', function (e) {
+	e.preventDefault();
+
+		var data={"userId":$("#userName").val(),"password":$("#password").val()};		
+		 $.ajax({
+			 url:"loginAuthentication",
+				dataType : 'json',
+				type : 'post',
+				data:JSON.stringify(data),
+				contentType: "application/json",
+				success:function(response){
+					if(response.status){
+					//console.log(response.data.builderId);
+					debugger
+						if(response.data.userType==100 && response.data.builderId==3) location.href="dashboard.html";
+						else location.href="sumadhura.html";
+						sessionStorage.setItem("id", response.data.id);
+						sessionStorage.setItem("userId", response.data.userId);
+						sessionStorage.setItem("userName", response.data.userName);
+						sessionStorage.setItem("builderId",response.data.builderId);
+						sessionStorage.setItem("builderName",response.data.builderName);
+						sessionStorage.setItem("uId",response.data.id);
+					}
+					else{
+						alert(response.message);
+					}
+				}
+	});
+});
+</script>
+</html>
